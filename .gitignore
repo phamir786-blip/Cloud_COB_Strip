@@ -1,0 +1,10 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.pio/
+firmware/esp32c3_cob_pwm/arduino_cloud_secrets.h
