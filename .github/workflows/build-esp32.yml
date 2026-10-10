@@ -33,14 +33,15 @@ jobs:
 
       - name: Configure Arduino IoT Cloud credentials (optional)
         env:
+          ARDUINO_CLOUD_DEVICE_ID: ${{ secrets.ARDUINO_CLOUD_DEVICE_ID }}
           ARDUINO_CLOUD_DEVICE_KEY: ${{ secrets.ARDUINO_CLOUD_DEVICE_KEY }}
         run: |
-          if [ -n "$ARDUINO_CLOUD_DEVICE_KEY" ]; then
+          if [ -n "$ARDUINO_CLOUD_DEVICE_ID" ] && [ -n "$ARDUINO_CLOUD_DEVICE_KEY" ]; then
             printf '#pragma once\n#define DEVICE_LOGIN_NAME "%s"\n#define DEVICE_KEY "%s"\n' \
-              "6e99597d-ac82-44f9-8409-735fea959de0" "$ARDUINO_CLOUD_DEVICE_KEY" \
+              "$ARDUINO_CLOUD_DEVICE_ID" "$ARDUINO_CLOUD_DEVICE_KEY" \
               > firmware/esp32c3_cob_pwm/arduino_cloud_secrets.h
           else
-            echo "Arduino IoT Cloud key not configured; cloud will be disabled in this build."
+            echo "Arduino IoT Cloud device ID/key not configured; cloud will be disabled in this build."
           fi
 
       - name: Build Firmware with PlatformIO

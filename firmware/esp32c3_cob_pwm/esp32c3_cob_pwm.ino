@@ -38,7 +38,7 @@
 #if __has_include("arduino_cloud_secrets.h")
   #include "arduino_cloud_secrets.h"
 #else
-  #define DEVICE_LOGIN_NAME "6e99597d-ac82-44f9-8409-735fea959de0"
+  #define DEVICE_LOGIN_NAME ""
   #define DEVICE_KEY ""
 #endif
 

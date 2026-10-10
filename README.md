@@ -16,13 +16,13 @@ The Arduino Cloud Thing should contain these Read & Write variables with matchin
 - `powerOn` — Boolean
 - `brightness` — Integer (1–100)
 
-The device ID used by this firmware is `6e99597d-ac82-44f9-8409-735fea959de0`.
+The current Arduino Cloud Device ID is supplied through the `ARDUINO_CLOUD_DEVICE_ID` Actions secret; no Device ID is hard-coded.
 
 ### Configure the device key
 
 For a local build, copy `firmware/esp32c3_cob_pwm/arduino_cloud_secrets.h.example` to `firmware/esp32c3_cob_pwm/arduino_cloud_secrets.h` and set `DEVICE_KEY` to the Device Secret Key from Arduino Cloud. The real header is ignored by Git; never commit or share the key.
 
-For GitHub Actions builds, add a repository Actions secret named `ARDUINO_CLOUD_DEVICE_KEY`. The workflow creates the ignored header at build time. Without that secret, the firmware still builds, but Arduino IoT Cloud remains disabled.
+For GitHub Actions builds, add repository Actions secrets named `ARDUINO_CLOUD_DEVICE_ID` and `ARDUINO_CLOUD_DEVICE_KEY`. The workflow creates the ignored header at build time only when both are present. Without that secret, the firmware still builds, but Arduino IoT Cloud remains disabled.
 
 The ESP32 must first be configured for its home Wi-Fi using the existing local web UI. Cloud startup is skipped while the controller is in setup-AP mode or when no device key is configured.
 
